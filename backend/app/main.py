@@ -82,7 +82,7 @@ def create_app() -> FastAPI:
         CORSMiddleware,
         allow_origins=settings.get_allowed_origins(),
         allow_credentials=True,
-        allow_methods=["GET", "POST", "PUT", "DELETE"],
+        allow_methods=["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"],
         allow_headers=["*"],
     )
     
@@ -118,6 +118,12 @@ def create_app() -> FastAPI:
             "docs": "/docs",
             "health": "/api/v1/health"
         }
+
+    # HEAD endpoint for health checks (required by Render and other platforms)
+    @app.head("/", tags=["Root"])
+    async def root_head():
+        """HEAD endpoint for health checks."""
+        return
     
     return app
 
