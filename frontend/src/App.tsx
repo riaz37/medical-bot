@@ -1,11 +1,10 @@
 /**
  * Main App component
  */
-import React, { useEffect, useRef } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { useMedicalBot } from '@/hooks/useMedicalBot';
-import { Header, ChatMessage, ChatInput, EmptyState } from '@/components';
-import { cn } from '@/utils/cn';
+import React, { useEffect, useRef } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { useMedicalBot } from "@/hooks/useMedicalBot";
+import { Header, ChatMessage, ChatInput, EmptyState } from "@/components";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -32,7 +31,7 @@ const AppContent: React.FC = () => {
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSubmitQuery = (query: string) => {
@@ -67,7 +66,7 @@ const AppContent: React.FC = () => {
               {messages.map((message) => (
                 <ChatMessage key={message.id} message={message} />
               ))}
-              
+
               {/* Loading indicator */}
               {isLoading && (
                 <div className="flex justify-start p-4">
@@ -78,9 +77,18 @@ const AppContent: React.FC = () => {
                     <div className="bg-gray-100 rounded-lg px-4 py-3">
                       <div className="flex items-center gap-2 text-gray-600">
                         <div className="flex gap-1">
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "0ms" }}
+                          />
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "150ms" }}
+                          />
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "300ms" }}
+                          />
                         </div>
                         <span className="text-sm">Thinking...</span>
                       </div>
@@ -88,7 +96,7 @@ const AppContent: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               {/* Error message */}
               {error && (
                 <div className="p-4">
@@ -99,7 +107,7 @@ const AppContent: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
           )}
