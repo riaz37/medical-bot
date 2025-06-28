@@ -35,7 +35,7 @@ async def lifespan(app: FastAPI):
                 if index_stats and index_stats.get('total_vector_count', 0) > 0:
                     logger.info(f"Index already contains {index_stats['total_vector_count']} vectors, skipping document processing")
                 else:
-                    logger.info("Index is empty, processing documents...")
+                    logger.info("Index empty, processing documents...")
                     result = await document_processor_service.process_directory("../data")
                     if result["status"] == "success":
                         await vector_store_service.add_documents(result["chunks"])
