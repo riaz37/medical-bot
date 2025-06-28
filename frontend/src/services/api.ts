@@ -11,9 +11,19 @@ import type {
   ApiError,
 } from '@/types/api';
 
+// Get API base URL from environment variables
+const getApiBaseUrl = (): string => {
+  // In development, use environment variable or fallback to proxy
+  if (import.meta.env.DEV) {
+    return import.meta.env.VITE_API_BASE_URL || '/api/v1';
+  }
+  // In production, use environment variable or fallback to relative path
+  return import.meta.env.VITE_API_BASE_URL || '/api/v1';
+};
+
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: getApiBaseUrl(),
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
