@@ -1,0 +1,21 @@
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+pydantic
+pydantic-settings
+
+# LangChain and AI dependencies
+langchain
+langchain-core
+langchain-google-genai
+langchain-pinecone
+
+# Vector store and embeddings
+pinecone
+
+# Additional utilities
+httpx
+loguru
+pytest
+pytest-asyncio
